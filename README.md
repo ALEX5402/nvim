@@ -1,2 +1,3 @@
 # nvim
-my Neovim configs
+my Neovim configs 
+based on [Nvchad](https://github.com/NvChad/NvChad)
