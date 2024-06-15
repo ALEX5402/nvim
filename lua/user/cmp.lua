@@ -236,10 +236,10 @@ function M.config()
           -- return vim_item
         end
 
-        if entry.source.name == "copilot" then
-          vim_item.kind = icons.git.Octoface
-          vim_item.kind_hl_group = "CmpItemKindCopilot"
-        end
+        -- if entry.source.name == "copilot" then
+         -- vim_item.kind = icons.git.Octoface
+          --vim_item.kind_hl_group = "CmpItemKindCopilot"
+        -- end
 
         if entry.source.name == "cmp_tabnine" then
           vim_item.kind = icons.misc.Robot
