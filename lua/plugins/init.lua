@@ -10,6 +10,7 @@ return {
 			require("configs.neocord")
 		end,
 	},
+	{ "codota/tabnine-nvim", build = "./dl_binaries.sh" }, --  my free copilot
 	{
 		"mfussenegger/nvim-lint",
 		lazy = "VeryLazy",
