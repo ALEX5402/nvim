@@ -2,6 +2,9 @@ local lazy = require("lazy")
 return {
 	{
 		"mfussenegger/nvim-jdtls",
+		config = function()
+			require("configs.java-nvim")
+		end,
 	},
 	{
 		"IogaMaster/neocord",
@@ -21,7 +24,12 @@ return {
 	{
 		"stevearc/conform.nvim",
 		config = function()
-			require("configs.conform")
+			require("conform").setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					java = { "google-java-format" },
+				},
+			})
 		end,
 	},
 	{
@@ -84,9 +92,6 @@ return {
 		"jay-babu/mason-nvim-dap.nvim",
 		lazy = "VeryLazy",
 		dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
-		config = function()
-			require("configs.mason_dap")
-		end,
 	},
 	{
 		"folke/noice.nvim",
@@ -118,7 +123,21 @@ return {
 		},
 	},
 
-	{ "echasnovski/mini.icons", version = false },
+	{
+		"echasnovski/mini.icons",
+		config = function()
+			require("lazy").setup({
+				{
+					"echasnovski/mini.icons",
+					config = function()
+						require("mini.icons").setup({
+							defaults = true,
+						})
+					end,
+				},
+			})
+		end,
+	},
 	{
 		"echasnovski/mini.animate",
 		lazy = "VeryLazy",
@@ -215,13 +234,6 @@ return {
 					vim.b.miniindentscope_disable = true
 				end,
 			})
-		end,
-	},
-	{
-		"seandewar/killersheep.nvim",
-		lazy = "VeryLazy",
-		config = function()
-			require("configs.killersheep")
 		end,
 	},
 	{

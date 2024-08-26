@@ -27,6 +27,8 @@ require("lazy").setup({
 	{ import = "plugins" },
 }, lazy_config)
 
+--extra plugin configs which need to be defined here
+
 require("tabnine").setup({
 	disable_auto_comment = true,
 	accept_keymap = "<Tab>",
@@ -36,6 +38,16 @@ require("tabnine").setup({
 	exclude_filetypes = { "TelescopePrompt", "NvimTree" },
 	log_file_path = nil, -- absolute path to Tabnine log file
 	ignore_certificate_errors = false,
+})
+
+require("mason").setup()
+require("mason-nvim-dap").setup({
+	automatic_setup = true,
+	handlers = {
+		function(config)
+			require("mason-nvim-dap").default_setup(config)
+		end,
+	},
 })
 
 -- load theme
