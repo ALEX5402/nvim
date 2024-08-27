@@ -2,8 +2,10 @@ local lazy = require("lazy")
 return {
 	{
 		"mfussenegger/nvim-jdtls",
+		ft = { "java" },
 		config = function()
-			require("configs.java-nvim")
+			require("emnt-nvim.jdtls").setup()
+			require("configs.java-nvim").setup()
 		end,
 	},
 	{
@@ -198,13 +200,6 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		config = function()
 			require("configs.webdevicons")
-		end,
-	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("configs.nvimtree")
 		end,
 	},
 	{

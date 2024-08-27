@@ -8,6 +8,28 @@ return {
 				cterm_color = "199",
 				name = "GraphQL",
 			},
+			override_by_filename = {
+				[".ecrc"] = {
+					icon = "",
+					name = "EditorConfigChecker",
+					color = C.green,
+				},
+				[".envrc"] = {
+					icon = "",
+					name = "envrc",
+					color = C.yellow,
+				},
+				[".editorconfig"] = {
+					icon = "",
+					name = "EditorConfig",
+					color = C.green,
+				},
+				[".luacheckrc"] = {
+					icon = "󰢱",
+					name = "LuacheckRC",
+					color = C.blue,
+				},
+			},
 		})
 	end,
 }
