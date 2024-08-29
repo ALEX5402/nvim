@@ -1,33 +1,40 @@
-vim.g.base46_cache = vim.fn.stdpath("data") .. "/nvchad/base46/"
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
 
 -- bootstrap lazy and all plugins
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
-	local repo = "https://github.com/folke/lazy.nvim.git"
-	vim.fn.system({ "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath })
+if not vim.uv.fs_stat(lazypath) then
+  local repo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
 end
 
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_config = require("configs.lazy")
+local lazy_config = require "configs.lazy"
 
 -- load plugins
 require("lazy").setup({
-	{
-		"NvChad/NvChad",
-		lazy = false,
-		branch = "v2.5",
-		import = "nvchad.plugins",
-		config = function()
-			require("options")
-		end,
-	},
-	{ import = "plugins" },
+  {
+    "NvChad/NvChad",
+    lazy = false,
+    branch = "v2.5",
+    import = "nvchad.plugins",
+  },
+
+  { import = "plugins" },
 }, lazy_config)
 
---extra plugin configs which need to be defined here
+-- load theme
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
+
+require "options"
+require "nvchad.autocmds"
+
+require("notify").setup({
+  background_colour = "#000000FF"
+})
 
 require("tabnine").setup({
 	disable_auto_comment = true,
@@ -40,22 +47,7 @@ require("tabnine").setup({
 	ignore_certificate_errors = false,
 })
 
-require("mason").setup()
-require("mason-nvim-dap").setup({
-	automatic_setup = true,
-	handlers = {
-		function(config)
-			require("mason-nvim-dap").default_setup(config)
-		end,
-	},
-})
-
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
-
-require("nvchad.autocmds")
 
 vim.schedule(function()
-	require("mappings")
+  require "mappings"
 end)

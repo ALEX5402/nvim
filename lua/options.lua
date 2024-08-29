@@ -1,4 +1,4 @@
-require("nvchad.options")
+require "nvchad.options"
 
 vim.opt.cursorline = true
 -- vim.opt.cursorcolumn = true
