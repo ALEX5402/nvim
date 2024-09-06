@@ -36,6 +36,13 @@ require("notify").setup({
   background_colour = "#000000FF"
 })
 
+require'lspconfig'.clangd.setup{
+  cmd = { "/home/alex/.local/share/nvim/mason/bin/clangd" },
+  on_attach = on_attach,
+  capabilities = capabilities,
+  root_dir = require'lspconfig'.util.root_pattern('compile_commands.json', '.git')
+}
+
 require("tabnine").setup({
 	disable_auto_comment = true,
 	accept_keymap = "<Tab>",
