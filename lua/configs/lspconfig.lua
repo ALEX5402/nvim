@@ -1,4 +1,3 @@
-
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
@@ -9,31 +8,37 @@ local servers = {
    "jdtls", -- Java
    "kotlin_language_server", -- Kotlin
    "rust_analyzer", -- Rust
-   "clangd", -- C++
+   "clangd",
    "pyright", -- Python
    "taplo", -- TOML
 }
-
--- Setup LSPs with default config
-for _, lsp in ipairs(servers) do
-   if lsp == "clangd" then
-      lspconfig.clangd.setup({
+lspconfig.clangd.setup({
          on_attach = on_attach,
          on_init = on_init,
          capabilities = capabilities,
-         cmd = { "/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/clangd" },
+         cmd = {   '/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/clangd',
+    '--background-index',
+    '--clang-tidy',
+    '--log=verbose'},
          filetypes = { "c", "cpp", "objc", "objcpp" },
          root_dir = lspconfig.util.root_pattern("Android.mk", "CMakeLists.txt", ".git"),
          init_options = {
             clangdFileStatus = true,
+            fallback_flags = { '-std=c++17' },
             arguments = {
-               "-isystem", "/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include", -- NDK headers
-               "-isystem", "/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/x86_64-linux-android", -- Android platform headers
-               -- Add other paths if needed
+               -- Exclude system headers
+               "-nostdinc",  -- Disables including system headers from `/usr/include`
+               -- Add NDK include paths
+               "-isystem", "/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include",
+               "-isystem", "/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/x86_64-linux-android", --
+               "-I", "/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include",  -- Example project include
             },
          },
-      })
-   elseif lsp == "rust_analyzer" then
+})
+
+-- Setup LSPs with default config
+for _, lsp in ipairs(servers) do
+   if lsp == "rust_analyzer" then
       lspconfig.rust_analyzer.setup({
          on_attach = on_attach,
          on_init = on_init,
@@ -67,4 +72,3 @@ lspconfig.kotlin_language_server.setup({
    on_init = on_init,
    capabilities = capabilities,
 })
-

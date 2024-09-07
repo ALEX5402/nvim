@@ -4,6 +4,12 @@ return {
     opts = require "configs.conform",
     -- event = 'BufWritePre', -- uncomment for format on save
   },
+    {
+        "neoclide/coc.nvim",
+        branch = "release",
+        config = function ()
+         end,
+    },
   
   {
     "neovim/nvim-lspconfig",
