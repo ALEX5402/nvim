@@ -1,6 +1,6 @@
 # Neovim Configuration
 
-This repository contains my custom Neovim configuration, tailored for efficient development in various programming languages, with support for several language servers and enhanced user experience through carefully selected plugins.
+This repository contains my custom Neovim configuration based on nvchad
 
 ![image](https://github.com/user-attachments/assets/bff80d50-ec19-4417-a0c9-5cd8f81f09f5)
 
@@ -102,12 +102,6 @@ The following language servers are configured:
 2. **Lua Language Server (`lua_ls`)**:
    - Provides support for Lua, particularly useful for Neovim configuration.
 
-3. **JDTLS (Java)**:
-   - Java development tools.
-
-4. **Kotlin Language Server**:
-   - Supports Kotlin development.
-
 5. **Rust Analyzer**:
    - Configured to run Clippy on save for Rust projects.
 
@@ -135,7 +129,7 @@ To use this configuration, make sure you have [Neovim](https://neovim.io/) 0.8+ 
 
 1. Clone this repository to your Neovim configuration folder:
    ```sh
-   git clone https://github.com/username/nvim-config ~/.config/nvim
+   git clone https://github.com/alex5402/nvim ~/.config/nvim
    ```
 
 2. Install the required plugins by launching Neovim and running:
@@ -147,15 +141,3 @@ To use this configuration, make sure you have [Neovim](https://neovim.io/) 0.8+ 
    ```sh
    :MasonInstall lua-language-server jdtls kotlin_language_server rust-analyzer clangd pyright taplo
    ```
-
----
-
-## Contribution
-
-Feel free to fork this repository and customize it to your needs. Any suggestions or improvements are welcome!
-
----
-
-Enjoy coding with Neovim! 😊
-
----
