@@ -1,4 +1,4 @@
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
 -- bootstrap lazy and all plugins
@@ -32,12 +32,13 @@ dofile(vim.g.base46_cache .. "statusline")
 require "options"
 require "nvchad.autocmds"
 
-require("notify").setup({
-  background_colour = "#000000FF"
-})
+-- this is optional for me
+-- require("notify").setup({
+--   background_colour = "#000000FF"
+-- })
 
 require'lspconfig'.clangd.setup{
-  cmd = { "/home/alex/.local/share/nvim/mason/bin/clangd" },
+  cmd = { "~/.local/share/nvim/mason/bin/clangd" },
   on_attach = on_attach,
   capabilities = capabilities,
   root_dir = require'lspconfig'.util.root_pattern('compile_commands.json', '.git')
@@ -53,6 +54,7 @@ require("tabnine").setup({
 	log_file_path = nil, -- absolute path to Tabnine log file
 	ignore_certificate_errors = false,
 })
+
 
 
 vim.schedule(function()

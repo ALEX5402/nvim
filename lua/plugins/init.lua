@@ -1,29 +1,8 @@
 return {
   {
     "stevearc/conform.nvim",
-    opts = require "configs.conform",
     -- event = 'BufWritePre', -- uncomment for format on save
-  },
-    {
-        "neoclide/coc.nvim",
-        branch = "release",
-        config = function ()
-         end,
-    },
-  {"simrat39/rust-tools.nvim", 
-       branch = "master",
-      config = function ()
-      require("rust-tools").setup({
-        server = {
-       on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-       end,
-       },
-     })
-      end,
+    opts = require "configs.conform",
   },
   {
     "neovim/nvim-lspconfig",
@@ -31,7 +10,28 @@ return {
       require "configs.lspconfig"
     end,
   },
-  
+  {
+    "neoclide/coc.nvim",
+    branch = "release",
+    config = function ()
+     end,
+},
+{"simrat39/rust-tools.nvim", 
+   branch = "master",
+  config = function ()
+  require("rust-tools").setup({
+    server = {
+   on_attach = function(_, bufnr)
+  -- Hover actions
+  vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+  -- Code action groups
+  vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+   end,
+   },
+ })
+  end,
+},
+
   { "codota/tabnine-nvim", build = "./dl_binaries.sh" },
   
   {
@@ -141,16 +141,6 @@ return {
   },
   
   {
-    "nvimdev/dashboard-nvim",
-    enabled = true,
-    event = "VimEnter",
-    config = function()
-      require("configs.dashboard")
-    end,
-    dependencies = { { "nvim-tree/nvim-web-devicons" } },
-  },
-  
-  {
     "folke/which-key.nvim",
     lazy = "VeryLazy",
     init = function()
@@ -235,4 +225,3 @@ return {
     end,
   },
 }
-
