@@ -36,7 +36,7 @@ return {
   
   {
     "mfussenegger/nvim-lint",
-    lazy = "VeryLazy",
+lazy = "VeryLazy",
     config = function()
       require("configs.lint")
     end,

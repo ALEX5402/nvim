@@ -30,12 +30,11 @@ dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 require "options"
-require "nvchad.autocmds"
+require "nvchad.autocmds" 
 
--- this is optional for me
--- require("notify").setup({
---   background_colour = "#000000FF"
--- })
+require("notify").setup({
+   background_colour = "#000000FF"
+ })
 
 require'lspconfig'.clangd.setup{
   cmd = { "~/.local/share/nvim/mason/bin/clangd" },

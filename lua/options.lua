@@ -31,12 +31,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         end)
     end,
 })
-
--- Linting on Save
-vim.api.nvim_create_autocmd("BufWritePost", {
-    callback = function()
-        pcall(function()
-            require("lint").try_lint()
-        end)
-    end,
-})
