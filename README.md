@@ -2,6 +2,8 @@
 
 This repository contains my custom Neovim configuration, tailored for efficient development in various programming languages, with support for several language servers and enhanced user experience through carefully selected plugins.
 
+![image](https://github.com/user-attachments/assets/bff80d50-ec19-4417-a0c9-5cd8f81f09f5)
+
 ## Features
 
 - **Language Server Protocol (LSP) Support** for multiple languages (C/C++, Rust, Python, Kotlin, Java, Lua, TOML).
